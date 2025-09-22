@@ -10,28 +10,24 @@ const ICONS = [
     <rect x="4" y="3" width="16" height="18" rx="3" stroke="white" strokeWidth="1.8" />
     <polyline points="10,16 12,18 16,14" stroke="white" strokeWidth="1.8" fill="none" />
   </svg>,
-
   // Conversion-driven design
   <svg key="conversion" width="54" height="54" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="8" stroke="white" strokeWidth="1.8" />
     <path d="M9 11a3 3 0 1 1 6 0" stroke="white" strokeWidth="1.6" fill="none" />
     <circle cx="15.5" cy="9" r="1.2" fill="white" />
   </svg>,
-
   // Reliable delivery
   <svg key="delivery" width="54" height="54" viewBox="0 0 24 24" fill="none">
     <path d="M3 6h13l5 5v7H3V6z" stroke="white" strokeWidth="1.8" />
     <circle cx="7.5" cy="18.5" r="1.8" fill="white" />
     <circle cx="16.5" cy="18.5" r="1.8" fill="white" />
   </svg>,
-
   // Cross-platform expertise
   <svg key="engineering" width="54" height="54" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.8" />
     <rect x="9" y="9" width="6" height="6" rx="1" stroke="white" strokeWidth="1.4" />
     <path d="M12 7v4m0 6v-2" stroke="white" strokeWidth="1.4" />
   </svg>,
-
   // Analytics & insights
   <svg key="analytics" width="54" height="54" viewBox="0 0 24 24" fill="none">
     <rect x="6" y="6" width="12" height="12" rx="3" stroke="white" strokeWidth="1.8" />
@@ -80,7 +76,6 @@ export default function WhyChooseUs() {
     if (titleRef.current) {
       const splitText = titleRef.current.textContent.split("");
       titleRef.current.textContent = "";
-
       splitText.forEach((char) => {
         const span = document.createElement("span");
         span.textContent = char;
@@ -89,7 +84,6 @@ export default function WhyChooseUs() {
         span.style.transform = "translateY(20px)";
         titleRef.current.appendChild(span);
       });
-
       gsap.to(titleRef.current.querySelectorAll("span"), {
         opacity: 1,
         y: 0,
@@ -143,31 +137,54 @@ export default function WhyChooseUs() {
   }, []);
 
   return (
-    <section ref={sectionRef} style={{ backgroundColor: "#000", width: "100%", minHeight: "75vh" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px" }}>
+    <section
+      ref={sectionRef}
+      style={{
+        backgroundColor: "#000",
+        width: "100%",
+        minHeight: "75vh",
+        padding: "60px 0"
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1120,
+          margin: "0 auto",
+          padding: "0 20px"
+        }}
+      >
         {/* Heading */}
-        <div style={{ textAlign: "center", marginTop: 80, marginBottom: 50 }}>
+        <div style={{
+          textAlign: "center",
+          marginTop: 40,
+          marginBottom: 32,
+          padding: "0 8px"
+        }}>
           <h2
             ref={titleRef}
             style={{
               color: "white",
-              fontSize: "3.5rem",
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
               fontWeight: 500,
               fontFamily: "Inter, sans-serif",
               letterSpacing: "0",
-              userSelect: "none"
+              userSelect: "none",
+              lineHeight: 1.15
             }}
           >
             Why choose us?
           </h2>
           <p
             style={{
-              marginTop: 16,
+              marginTop: 14,
               color: "#a1a1a1",
-              fontSize: "1.15rem",
+              fontSize: "clamp(1rem, 2vw, 1.15rem)",
               fontWeight: 400,
               fontFamily: "Inter, sans-serif",
-              lineHeight: 1.5
+              lineHeight: 1.6,
+              maxWidth: "700px",
+              marginLeft: "auto",
+              marginRight: "auto"
             }}
           >
             We specialize in websites, apps and digital campaigns for brands in India and worldwide.
@@ -177,41 +194,49 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Features */}
-        <div style={{ position: "relative", marginTop: 100 }}>
+        <div style={{ position: "relative", marginTop: 36, marginBottom: 24 }}>
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              gap: 40,
-              position: "relative",
-              zIndex: 1
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: "36px 26px",
+              alignItems: "stretch"
             }}
           >
             {FEATURES.map((feature, idx) => (
               <div
                 key={idx}
-                style={{ flex: 1, minWidth: 0, textAlign: "center" }}
+                style={{
+                  flex: "1 1 230px",
+                  minWidth: 210,
+                  maxWidth: 280,
+                  textAlign: "center",
+                  margin: "0 0 28px 0",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center"
+                }}
                 className="feature-card"
-                ref={(el) => {
+                ref={el => {
                   cardsRef.current[idx] = el;
                 }}
               >
                 <div
-                  ref={(el) => {
+                  ref={el => {
                     circleRefs.current[idx] = el;
                   }}
                   style={{
-                    width: 140,
-                    height: 140,
-                    margin: "0 auto 40px",
+                    width: 90,
+                    height: 90,
+                    margin: "0 auto 22px",
                     borderRadius: "50%",
                     background:
-                      "radial-gradient(closest-side, rgba(80,80,80,0.25), rgba(0,0,0,0.65))",
+                      "radial-gradient(closest-side, rgba(80,80,80,0.22), rgba(0,0,0,0.65))",
                     boxShadow:
-                      "inset 4px 2px 6px rgba(150,150,150,0.15), 0 0 60px rgba(255,255,255,0.2), inset 0 0 24px rgba(255,255,255,0.2)",
-                    backdropFilter: "blur(14px)",
-                    WebkitBackdropFilter: "blur(14px)",
+                      "inset 2px 2px 6px rgba(150,150,150,0.09), 0 0 36px rgba(255,255,255,0.17), inset 0 0 14px rgba(255,255,255,0.18)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -224,9 +249,10 @@ export default function WhyChooseUs() {
                   style={{
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
-                    fontSize: "1.3rem",
+                    fontSize: "clamp(1.05rem, 2.4vw, 1.26rem)",
                     color: "#EDEDED",
-                    marginBottom: 20
+                    marginBottom: 16,
+                    marginTop: 0
                   }}
                 >
                   {feature.title}
@@ -236,7 +262,7 @@ export default function WhyChooseUs() {
                   style={{
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 400,
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.95rem,2vw,1rem)",
                     color: "#8a8a8a",
                     maxWidth: 320,
                     margin: "0 auto"

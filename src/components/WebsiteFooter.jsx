@@ -6,23 +6,29 @@ export default function WebsiteFooter() {
       width: "100vw",
       background: "radial-gradient(ellipse at 60% 0%,rgba(20,20,20,.61) 48%,rgba(6,6,6,.96) 100%)",
       borderTop: "1px solid rgba(255,255,255,0.04)",
-      padding: "0",
+      padding: 0,
       margin: 0,
-      minHeight: 145,
+      minHeight: 120
     }}>
       <div style={{
         maxWidth: 1150,
         margin: "0 auto",
         display: "flex",
+        flexDirection: "row",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        padding: "46px 34px 42px 28px",
+        padding: "38px 12px 38px 12px",
         fontFamily: "Inter,Segoe UI,Arial,sans-serif",
+        flexWrap: "wrap",
+        gap: 32,
       }}>
         {/* Left: logo/copyright */}
-        <div style={{ flex: 1.6 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-            {/* Placeholder for your minimalist wAt logo */}
+        <div style={{
+          flex: "1 1 200px",
+          minWidth: 180,
+          marginBottom: 18
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 15 }}>
             <span style={{
               display: "inline-block",
               width: 32,
@@ -32,7 +38,6 @@ export default function WebsiteFooter() {
               marginRight: 8,
               position: "relative"
             }}>
-              {/* Simple 'w' white mark in a box */}
               <span style={{
                 color: "#fff",
                 fontWeight: 700,
@@ -48,14 +53,14 @@ export default function WebsiteFooter() {
               color: "#fff",
               fontWeight: 700,
               letterSpacing: "-0.01em",
-              fontSize: "1.48rem"
+              fontSize: "1.38rem"
             }}>
               wAt
             </span>
           </div>
           <span style={{
             color: "#858585",
-            fontSize: "1.09rem",
+            fontSize: "1rem",
             fontWeight: 400,
             opacity: 0.92
           }}>
@@ -64,17 +69,19 @@ export default function WebsiteFooter() {
         </div>
         {/* Center: Company/Legal lists */}
         <div style={{
-          flex: 2,
+          flex: "2 1 260px",
           display: "flex",
           justifyContent: "center",
-          gap: 92,
+          gap: 42,
+          minWidth: 220,
+          flexWrap: "wrap"
         }}>
           {/* Company */}
-          <div>
+          <div style={{ minWidth: 120, marginBottom: 24 }}>
             <span style={{
               color: "#fff",
               fontWeight: 600,
-              fontSize: "1.12rem",
+              fontSize: "1.08rem",
               marginBottom: 10,
               display: "inline-block"
             }}>Company</span>
@@ -83,7 +90,7 @@ export default function WebsiteFooter() {
               padding: 0,
               margin: "17px 0 0 0",
               opacity: 0.87,
-              fontSize: "1.12rem",
+              fontSize: "1.08rem",
             }}>
               <li style={{ margin: "0 0 11px 0" }}>
                 <a href="#services" style={footerLink}>Services</a>
@@ -97,11 +104,11 @@ export default function WebsiteFooter() {
             </ul>
           </div>
           {/* Legal */}
-          <div>
+          <div style={{ minWidth: 120 }}>
             <span style={{
               color: "#fff",
               fontWeight: 600,
-              fontSize: "1.12rem",
+              fontSize: "1.08rem",
               marginBottom: 10,
               display: "inline-block"
             }}>Legal</span>
@@ -110,7 +117,7 @@ export default function WebsiteFooter() {
               padding: 0,
               margin: "17px 0 0 0",
               opacity: 0.87,
-              fontSize: "1.12rem",
+              fontSize: "1.08rem",
             }}>
               <li style={{ margin: "0 0 11px 0" }}>
                 <a href="#privacy" style={footerLink}>Privacy Policy</a>
@@ -126,11 +133,12 @@ export default function WebsiteFooter() {
         </div>
         {/* Right: Socials */}
         <div style={{
-          flex: 1.2,
+          flex: "1.2 1 170px",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-end",
-          justifyContent: "flex-start"
+          justifyContent: "flex-start",
+          minWidth: 140
         }}>
           <div style={{ display: "flex", gap: 17, marginTop: 2 }}>
             <a href="https://x.com/" target="_blank" rel="noopener noreferrer" style={glassIconBtn} aria-label="X">
@@ -155,11 +163,38 @@ export default function WebsiteFooter() {
           </div>
         </div>
       </div>
+      {/* Responsive layout for mobile */}
+      <style>{`
+        @media (max-width: 820px) {
+          footer > div {
+            flex-direction: column;
+            align-items: stretch !important;
+            padding: 26px 4vw 26px 4vw !important;
+            gap: 22px !important;
+          }
+          footer > div > div {
+            align-items: flex-start !important;
+            margin-bottom: 18px !important;
+            min-width: 0 !important;
+          }
+          footer > div > div:last-child {
+            align-items: flex-start !important;
+            margin-bottom: 0 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          footer span, footer ul, footer a {
+            font-size: 0.97rem !important;
+          }
+          footer > div {
+            padding: 20px 2vw 20px 2vw !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
 
-// Reusable style for nav/footer link
 const footerLink = {
   color: "#bcbcbc",
   textDecoration: "none",
@@ -168,7 +203,6 @@ const footerLink = {
   opacity: 0.95,
   transition: "color 0.15s",
 };
-
 const glassIconBtn = {
   background: "rgba(255,255,255,0.08)",
   borderRadius: 8,
