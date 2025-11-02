@@ -1,29 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import projects from "../data/projectsData";
 
-// Dummy project data
-const PROJECTS = [
-  {
-    name: "GreenTech Solutions",
-    description: "Increased customer engagement by 30% and streamlined digital presence.",
-    tags: ["Web Design", "Figma", "Responsive"],
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-    url: "/ProjectDetailSection"
-  },
-  {
-    name: "StudioWave",
-    description: "Brand overhaul led to 2x conversions and a striking digital facelift.",
-    tags: ["Branding", "UI/UX", "Next.js"],
-    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3e49?auto=format&fit=crop&w=800&q=80",
-    url: "/case-studies/studiowave"
-  },
-  {
-    name: "FitStack App",
-    description: "Mobile-first redesign with real-time features grew retention by 40%.",
-    tags: ["Mobile App", "React Native", "Real-time"],
-    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
-    url: "/case-studies/fitstack-app"
-  }
-];
+gsap.registerPlugin(ScrollTrigger);
 
 // Arrow icon SVG
 const ArrowIcon = (
@@ -34,53 +15,108 @@ const ArrowIcon = (
 );
 
 export default function CaseStudies() {
-  // Track hovered state for each image
   const hoverRefs = useRef([]);
+  const cardRefs = useRef([]);
+  const sectionRef = useRef(null);
 
-  // For clean fade, just use css for arrow overlay per card
+  useEffect(() => {
+    // Set initial state for cards
+    gsap.set(cardRefs.current, {
+      opacity: 0,
+      y: 80,
+      scale: 0.95
+    });
+
+    // Animate cards on scroll with stagger
+    cardRefs.current.forEach((card, index) => {
+      if (card) {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 60%",
+            toggleActions: "play none none none",
+          },
+          delay: index * 0.15
+        });
+      }
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <section style={{ background: "#000", width: "100vw", padding: "0", margin: 0, minHeight: "88vh" }}>
-      <div style={{ maxWidth: 1020, margin: "0 auto", padding: "52px 0 0 0", textAlign: "center" }}>
+    <section 
+      ref={sectionRef}
+      style={{ 
+        background: "#000", 
+        width: "100vw", 
+        padding: "0", 
+        margin: 0, 
+        minHeight: "88vh" 
+      }}
+    >
+      {/* Header Section */}
+      <div style={{ 
+        maxWidth: "min(1020px, 90vw)", 
+        margin: "0 auto", 
+        padding: "clamp(32px, 5vw, 52px) 20px 0",
+        textAlign: "center" 
+      }}>
         <h1 style={{
           fontFamily: "Inter, Segoe UI, Arial, sans-serif",
           fontWeight: 500,
-          fontSize: "4.4rem",
+          fontSize: "clamp(2.2rem, 6vw, 4.4rem)",
           letterSpacing: "-0.025em",
           color: "#e2e2e2",
-          marginBottom: 12,
+          marginBottom: "clamp(8px, 1.5vw, 12px)",
         }}>
           Case Studies
         </h1>
         <div style={{
           color: "#bcbcbc",
           fontWeight: 400,
-          fontSize: "1.18rem",
+          fontSize: "clamp(1rem, 2vw, 1.18rem)",
           lineHeight: 1.48,
-          marginBottom: 40,
-          fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+          marginBottom: "clamp(24px, 4vw, 40px)",
+          fontFamily: "Inter, Segoe UI, Arial, sans-serif",
+          padding: "0 10px"
         }}>
           Discover how our solutions have transformed businesses. Read our case studies to see real results and success stories.
         </div>
       </div>
+
+      {/* Cards Container */}
       <div style={{
-        maxWidth: 1180,
+        maxWidth: "min(1180px, 95vw)",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
-        gap: 48,
+        gap: "clamp(28px, 5vw, 48px)",
         alignItems: "center",
-        padding: "20px 0 60px"
+        padding: "20px 15px clamp(40px, 8vw, 60px)"
       }}>
-        {PROJECTS.map((proj, idx) => (
+        {projects.map((proj, idx) => (
           <div
-            key={proj.name}
+            key={proj.id}
+            ref={el => cardRefs.current[idx] = el}
+            className="case-study-card"
             style={{
               width: "100%",
               maxWidth: 1130,
-              minHeight: 272,
+              minHeight: "clamp(200px, 50vw, 272px)",
               display: "flex",
+              flexDirection: window.innerWidth <= 768 ? "column" : "row",
               alignItems: "stretch",
-              borderRadius: "2.1rem",
+              borderRadius: "clamp(1.2rem, 3vw, 2.1rem)",
               background: "linear-gradient(115deg, rgba(39,39,41,0.24) 54%, rgba(18,18,20,0.38) 100%)",
               boxShadow: "0 8px 64px rgba(0,0,0,0.19), 0 0.5px 14px 0 rgba(100,100,100,0.07) inset",
               backdropFilter: "blur(13px) saturate(113%)",
@@ -91,12 +127,12 @@ export default function CaseStudies() {
             }}
           >
             {/* Image */}
-            <a
-              href={proj.url}
+            <Link
+              to={`/projects/${proj.id}`}
               style={{
-                width: 360,
-                minWidth: 300,
-                height: "100%",
+                width: window.innerWidth <= 768 ? "100%" : "clamp(280px, 30vw, 360px)",
+                minWidth: window.innerWidth <= 768 ? "100%" : "280px",
+                height: window.innerWidth <= 768 ? "200px" : "100%",
                 position: "relative",
                 display: "block",
                 textDecoration: "none",
@@ -120,16 +156,17 @@ export default function CaseStudies() {
             >
               <img
                 src={proj.image}
-                alt={proj.name}
+                alt={proj.title}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  minHeight: 230,
-                  maxHeight: 280,
+                  minHeight: window.innerWidth <= 768 ? "200px" : "230px",
+                  maxHeight: window.innerWidth <= 768 ? "200px" : "280px",
                   display: "block",
-                  borderTopLeftRadius: "2.1rem",
-                  borderBottomLeftRadius: "2.1rem",
+                  borderTopLeftRadius: "clamp(1.2rem, 3vw, 2.1rem)",
+                  borderBottomLeftRadius: window.innerWidth <= 768 ? "0" : "clamp(1.2rem, 3vw, 2.1rem)",
+                  borderTopRightRadius: window.innerWidth <= 768 ? "clamp(1.2rem, 3vw, 2.1rem)" : "0",
                   filter: "brightness(0.93)",
                   transition: "filter 0.15s"
                 }}
@@ -151,11 +188,14 @@ export default function CaseStudies() {
               >
                 {ArrowIcon}
               </span>
-            </a>
+            </Link>
+
             {/* Content */}
             <div style={{
               flex: 1,
-              padding: "38px 42px 36px 46px",
+              padding: window.innerWidth <= 768 
+                ? "clamp(20px, 5vw, 28px) clamp(20px, 5vw, 32px)" 
+                : "clamp(28px, 4vw, 38px) clamp(32px, 5vw, 46px) clamp(28px, 4vw, 36px)",
               textAlign: "left",
               display: "flex",
               flexDirection: "column",
@@ -164,32 +204,36 @@ export default function CaseStudies() {
               <div style={{
                 fontFamily: "Inter, Segoe UI, Arial, sans-serif",
                 fontWeight: 600,
-                fontSize: "2.1rem",
+                fontSize: "clamp(1.4rem, 3.5vw, 2.1rem)",
                 color: "#f4f4f4",
-                marginBottom: 17
+                marginBottom: "clamp(10px, 2vw, 17px)"
               }}>
-                {proj.name}
+                {proj.title}
               </div>
               <div style={{
                 color: "#b9b9b9",
                 fontWeight: 400,
-                fontSize: "1.13rem",
+                fontSize: "clamp(0.95rem, 2vw, 1.13rem)",
                 lineHeight: 1.55,
-                marginBottom: 33,
+                marginBottom: "clamp(18px, 3vw, 33px)",
                 fontFamily: "Inter, Segoe UI, Arial, sans-serif"
               }}>
-                {proj.description}
+                {proj.subtitle}
               </div>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                {proj.tags.map((tag, i) =>
+              <div style={{ 
+                display: "flex", 
+                gap: "clamp(8px, 2vw, 14px)", 
+                flexWrap: "wrap" 
+              }}>
+                {proj.tags.map((tag) =>
                   <span key={tag} style={{
                     background: "rgba(255,255,255,0.07)",
                     borderRadius: "44px",
-                    fontSize: "1.01rem",
+                    fontSize: "clamp(0.88rem, 1.8vw, 1.01rem)",
                     color: "#dadada",
                     fontWeight: 500,
                     fontFamily: "Inter, Segoe UI, Arial, sans-serif",
-                    padding: "7px 23px 7px 16px",
+                    padding: "clamp(5px, 1vw, 7px) clamp(14px, 3vw, 23px) clamp(5px, 1vw, 7px) clamp(12px, 2.5vw, 16px)",
                     border: "1.17px solid rgba(255,255,255,0.10)",
                     display: "inline-block"
                   }}>{tag}</span>
@@ -199,6 +243,15 @@ export default function CaseStudies() {
           </div>
         ))}
       </div>
+
+      {/* Add responsive styles */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .case-study-card {
+            flex-direction: column !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

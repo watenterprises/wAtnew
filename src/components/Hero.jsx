@@ -61,7 +61,7 @@ function Hero() {
           }}
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          <span className="text-white/90 font-medium text-sm">Ready To Transform Your Business?</span>
+          <span className="text-white/90 font-medium text-sm">Not for all. For the Ambitious.</span>
         </div>
 
         {/* Main Heading - Two-tone with thin font */}
@@ -89,7 +89,7 @@ function Hero() {
             fontSize: 'clamp(1rem, 3vw, 1.25rem)' // Smaller responsive font size
           }}
         >
-          Build, automate, and scale your business with wAt's tailored software and digital marketing solutions—stress-free engagement, measurable results, no contracts required.
+          Build, automate, and scale your business with wAt's tailored software and digital marketing solutions—stress-free engagement, measurable results.
         </p>
 
         {/* CTA Button */}
@@ -123,7 +123,7 @@ function Hero() {
               fontSize: '1rem' // Smaller font size
             }}
           >
-            Trusted by 500+ partners
+            Trusted by 120+ businesses
           </span>
         </div>
       </div>

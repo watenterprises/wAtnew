@@ -9,7 +9,7 @@ const project = {
   highlights: [
     { label: "Conversion Up", value: "+30%" },
     { label: "Time to Launch", value: "5 Weeks" },
-    { label: "Bounce Rate", value: "-21%" }
+    { label: "Bounce Rate", valu: "-21%" }
   ],
   summary: `GreenTech Solutions partnered with us for a full digital overhaul—turning an outdated website into a high-converting, modern platform.`,
   problem: `GreenTech Solutions had a static website with poor engagement and outdated branding. Users dropped off before reaching conversion points, and mobile usability was lacking.`,

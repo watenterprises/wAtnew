@@ -280,7 +280,7 @@ const Features = () => {
                   marginBottom: '40px'
                 }}
               >
-                Most design requests are completed within 48 hours or less.
+                Most requests are handled in 48 hours or less — quick, seamless, and stress-free.
               </p>
             </div>
             
@@ -555,7 +555,7 @@ const Features = () => {
                 lineHeight: '1.6'
               }}
             >
-              Work directly with our expert designers via Slack, Trello, or Notion. Get updates, share feedback, and launch faster than ever. We ensure smooth and fast communication.
+              Work directly with our expert designers via OneNote, Discord, and Notion. Get updates, share feedback, and launch faster than ever. We ensure smooth and fast communication.
             </p>
           </div>
 

@@ -5,12 +5,12 @@ import { gsap } from "gsap";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Services from "./components/Features"; // or make it a page later
+import Services from "./components/Features";
 import CaseStudies from "./pages/CaseStudies";
-import ProjectDetailSection from "./pages/ProjectDetailSection";
+import ProjectDetail from "./pages/ProjectDetail";
 import ContactPage from "./pages/ContactPage";
-// import Home from "./pages/Home";
-// import About from "./pages/About"; // when you create it
+import ServicesPage from "./components/ServicesPage";
+import AboutUsPage from "./components/AboutUsPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -40,10 +40,11 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="/projects" element={<CaseStudies />} />
-            <Route path="/ProjectDetailSection" element={<ProjectDetailSection />} />
+            <Route path="/projects/:projectId" element={<ProjectDetail />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
           </Routes>
         </div>
       )}

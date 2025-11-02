@@ -1,13 +1,14 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 
 function Loader() {
   const outerRingRef = useRef();
   const innerRingRef = useRef();
-  const textRef = useRef();
   const logoRef = useRef();
+  const [displayedQuote, setDisplayedQuote] = useState('');
 
   useEffect(() => {
+    // Loader animations
     gsap.to(outerRingRef.current, {
       rotate: 360,
       repeat: -1,
@@ -22,14 +23,6 @@ function Loader() {
       ease: "none"
     });
 
-    gsap.to(textRef.current, {
-      opacity: 0.5,
-      yoyo: true,
-      repeat: -1,
-      duration: 1,
-      ease: "sine.inOut"
-    });
-
     gsap.to(logoRef.current, {
       scale: 1.1,
       yoyo: true,
@@ -37,21 +30,45 @@ function Loader() {
       duration: 0.8,
       ease: "sine.inOut"
     });
+
+    // Motivational quotes
+    const quotes = [
+      "Turning your vision into digital reality.",
+      "Innovation starts with a single click.",
+      "Building brands that inspire and grow.",
+      "Your business deserves a bold digital identity.",
+      "We craft experiences that convert visitors into clients.",
+      "Design. Develop. Dominate your market.",
+      "Transform your ideas into impactful web solutions."
+    ];
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Typing effect
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      setDisplayedQuote(prev => prev + quote.charAt(index));
+      index++;
+      if (index >= quote.length) clearInterval(typingInterval);
+    }, 40); // typing speed
+
+    return () => clearInterval(typingInterval);
   }, []);
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
       <div className="relative flex items-center justify-center">
+        {/* Outer ring */}
         <div
           ref={outerRingRef}
           className="w-20 h-20 rounded-full border-4 border-transparent"
-          style={{ 
-            borderTopColor: '#0072b0', // Updated blue color
-            borderRightColor: '#005a8b', // Darker variant
+          style={{
+            borderTopColor: '#0072b0',
+            borderRightColor: '#005a8b',
             filter: 'drop-shadow(0 0 20px rgba(0, 114, 176, 0.3))'
           }}
         />
-        
+
+        {/* Inner ring */}
         <div
           ref={innerRingRef}
           className="absolute w-14 h-14 rounded-full border-2 border-transparent"
@@ -60,23 +77,17 @@ function Loader() {
             borderLeftColor: '#005a8b'
           }}
         />
-        
-        <div 
-          ref={logoRef}
-          className="absolute w-8 h-8 rounded-md flex items-center justify-center"
-          style={{
-            background: 'linear-gradient(135deg, #0072b0 0%, #005a8b 100%)'
-          }}
-        >
-          <span className="text-white font-bold text-xs">wAt</span>
+
+        {/* Logo */}
+        <div ref={logoRef} className="absolute w-10 h-10 flex items-center justify-center">
+          <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
         </div>
       </div>
-      
-      <div ref={textRef} className="mt-8 text-2xl font-bold tracking-wide text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
-        wAt
-      </div>
-      <div className="mt-2 text-sm text-gray-400 tracking-wider" style={{ fontFamily: 'Inter, sans-serif' }}>
-        Loading your digital solutions...
+
+      {/* Typing quote */}
+      <div className="mt-6 text-center text-gray-300 text-sm sm:text-base px-6 max-w-sm whitespace-pre-wrap" style={{ fontFamily: 'Inter, sans-serif' }}>
+        {displayedQuote}
+        <span className="animate-pulse">|</span>
       </div>
     </div>
   );

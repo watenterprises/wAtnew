@@ -1,221 +1,165 @@
-import React, { useState, useRef, useEffect } from "react";
-import { gsap } from "gsap";
+import React, { useRef, useEffect } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const testimonials = [
+const reviews = [
   {
-    text: "We've seen a significant improvement on our conversion rate after switching to their service. Highly recommend!",
-    name: "Emily Carter",
-    title: "E-commerce Founder",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Gaurav Kumar",
+    date: "2025-09-17",
+    rating: 5,
+    review:
+      "Our experience with WAT was excellent. Their marketing strategies brought significant visibility and customer traction, reinforcing why we chose them.",
+    avatar: "https://ui-avatars.com/api/?name=Gaurav+Kumar&background=ff7043&color=fff",
   },
   {
-    text: "The team delivered exceptional design work that truly captured our brand essence. A game-changer for us!",
-    name: "Michael Lee",
-    title: "Creative Director",
-    avatar: "https://randomuser.me/api/portraits/men/34.jpg",
+    name: "Shuvam Mohanty",
+    date: "2025-09-17",
+    rating: 5,
+    review:
+      "WAT took charge of our product launch with a well-rounded marketing plan that included influencer partnerships, content strategy, and digital campaigns.",
+    avatar: "https://ui-avatars.com/api/?name=Shuvam+Mohanty&background=00bcd4&color=fff",
   },
   {
-    text: "Professional, timely, and always attentive to our needs. Their service boosted our growth remarkably.",
-    name: "Sophia Patel",
-    title: "Product Manager",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-  }
+    name: "Saikiran",
+    date: "2025-09-17",
+    rating: 5,
+    review:
+      "We trusted WAT to handle all our social media accounts, and they delivered stellar results. Their mix of organic posts and paid ads boosted our reach impressively.",
+    avatar: "https://ui-avatars.com/api/?name=Saikiran&background=8bc34a&color=fff",
+  },
 ];
 
 export default function TestimonialSection() {
-  const [current, setCurrent] = useState(0);
-  const cardRef = useRef(null);
-  const textRefs = useRef([]);
+  const carouselRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent(prev => (prev + 1) % testimonials.length);
-    }, 9000);
-    return () => clearInterval(interval);
+    gsap.fromTo(
+      sectionRef.current.querySelectorAll(".fade-up"),
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.25,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      }
+    );
   }, []);
 
-  useEffect(() => {
-    if (cardRef.current) {
-      gsap.fromTo(cardRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 1, ease: "power3.out",
-          scrollTrigger: { trigger: cardRef.current, start: "top 85%", once: true }
-        });
+  const scroll = (direction) => {
+    const { current } = carouselRef;
+    if (current) {
+      const scrollAmount = direction === "left" ? -350 : 350;
+      current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
-  }, []);
+  };
 
-  useEffect(() => {
-    if (textRefs.current[current]) {
-      const el = textRefs.current[current];
-      gsap.fromTo(el.querySelector(".testimonial-text"),
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
-      gsap.fromTo(el.querySelector(".testimonial-name-title"),
-        { opacity: 0 },
-        { opacity: 1, delay: 0.3, duration: 0.5, ease: "power3.out" });
-    }
-  }, [current]);
+  const reviewLink = "https://your-review-link.com"; // replace with your actual link
 
   return (
-    <section style={{
-      background: "#000",
-      width: "100vw",
-      minHeight: "70vh",
-      margin: 0,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: 0
-    }}>
-      <div style={{
-        maxWidth: 930,
-        margin: "0 auto",
-        padding: "42px 2vw 48px",
-        textAlign: "center",
-        position: "relative",
-        width: "100%"
-      }}>
-        <h2 style={{
-          fontFamily: "Inter, Segoe UI, Arial, sans-serif",
-          fontWeight: 400,
-          fontSize: "clamp(1.6rem,5vw,2.7rem)",
-          color: "#acacac",
-          marginBottom: 14,
-          letterSpacing: "-0.03em"
-        }}>
-          Don't take our word for it
-        </h2>
-        <p style={{
-          color: "#a0a0a0",
-          fontWeight: 400,
-          fontSize: "clamp(1rem,2vw,1.18rem)",
-          lineHeight: 1.4,
-          marginBottom: 38,
-          fontFamily: "Inter, Segoe UI, Arial, sans-serif"
-        }}>
-          See what our happy clients have to say about<br />
-          our subscription-based web design services.
-        </p>
-
-        <div ref={cardRef} style={{
-          width: "100%",
-          maxWidth: 600,
-          margin: "0 auto",
-          backdropFilter: "blur(22px)",
-          WebkitBackdropFilter: "blur(22px)",
-          background: "rgba(15,15,15,0.43)",
-          borderRadius: "2.1rem",
-          boxShadow: "0 8px 36px rgba(15,15,20,0.28), inset 0 0 20px rgba(255,255,255,0.11)",
-          padding: "34px 6vw 36px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          position: "relative",
-          userSelect: "none",
-          cursor: "default"
-        }}>
-          <div style={{
-            fontSize: "2.65rem",
-            color: "#fff",
-            opacity: 0.96,
-            marginBottom: 20,
-            fontWeight: 700,
-            lineHeight: 1
-          }}>
-            <span role="img" aria-label="quote">&rdquo;</span>
+    <section
+      ref={sectionRef}
+      className="bg-black text-white py-14 px-5 md:px-12 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:gap-8 items-start relative fade-up">
+        {/* Left Section */}
+        <div className="flex flex-col items-center md:items-start w-full md:w-[30%]">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="bg-yellow-300 text-black text-2xl font-extrabold rounded-full w-12 h-12 flex items-center justify-center">
+              w
+            </div>
+            <h2 className="text-xl font-semibold">WAT</h2>
           </div>
 
-          {testimonials.map((t, i) => (
-            <div
-              key={t.name}
-              ref={el => textRefs.current[i] = el}
-              style={{
-                display: current === i ? "block" : "none",
-                maxWidth: 650,
-                wordBreak: "break-word"
-              }}
-            >
-              <div className="testimonial-text" style={{
-                fontFamily: "Inter, Segoe UI, Arial, sans-serif",
-                fontWeight: 600,
-                fontSize: "clamp(1.08rem,3.8vw,1.65rem)",
-                color: "#fff",
-                lineHeight: 1.22,
-                letterSpacing: "-0.025em",
-                marginBottom: 30,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}>
-                <span>{t.text}</span>
-                <button style={{
-                  background: "rgba(25,25,25,0.34)",
-                  border: "none",
-                  borderRadius: 9,
-                  width: 38,
-                  height: 38,
-                  marginLeft: 12,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 3px 12px rgba(0,0,0,0.14)",
-                  cursor: "pointer",
-                  color: "rgba(255,255,255,0.93)"
-                }}>
-                  <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.5 7l4 4-4 4M6.5 11h8" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-              <div className="testimonial-name-title" style={{
-                display: "flex",
-                alignItems: "center"
-              }}>
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  width={38}
-                  height={38}
-                  style={{
-                    borderRadius: "50%",
-                    marginRight: 12,
-                    boxShadow: "0 0 8px rgba(255,255,255,0.10)",
-                    backdropFilter: "blur(7px)",
-                    WebkitBackdropFilter: "blur(7px)"
-                  }}
-                />
-                <div style={{ textAlign: "left" }}>
-                  <div style={{
-                    color: "#fff",
-                    fontWeight: 500,
-                    fontSize: "1rem",
-                    lineHeight: 1.08,
-                    fontFamily: "Inter, sans-serif"
-                  }}>{t.name}</div>
-                  <div style={{
-                    color: "#b3b3b3",
-                    fontWeight: 400,
-                    fontSize: "0.95rem",
-                    fontFamily: "Inter, sans-serif"
-                  }}>{t.title}</div>
-                </div>
-              </div>
-            </div>
-          ))}
+          <div className="flex items-center gap-1 mb-1">
+            {[...Array(4)].map((_, i) => (
+              <Star key={i} fill="#FFC107" stroke="#FFC107" size={18} />
+            ))}
+            <Star fill="#FFC107" stroke="#FFC107" size={18} className="opacity-70" />
+          </div>
+
+          <p className="text-gray-400 text-sm mb-3">110 Google reviews</p>
+
+          <button
+            onClick={() => window.open(reviewLink, "_blank")}
+            className="bg-white text-black font-medium px-5 py-2 rounded-md hover:scale-105 hover:bg-gray-200 transition-transform duration-300"
+          >
+            Write a review
+          </button>
         </div>
-        <style>{`
-          @media (max-width: 600px) {
-            h2 { font-size: 1.3rem !important; }
-            p { font-size: 1rem !important; }
-            div[ref=cardRef] { padding: 24px 4vw 25px !important; }
-            .testimonial-text { font-size: 0.98rem !important; }
-            .testimonial-name-title img { width: 28px !important; height: 28px !important; margin-right: 9px !important; }
-          }
-        `}</style>
+
+        {/* Right Section - Reviews */}
+        <div className="w-full md:w-[70%] relative fade-up">
+          <div
+            ref={carouselRef}
+            className="flex gap-5 overflow-hidden scroll-smooth"
+          >
+            {reviews.map((r, index) => (
+              <div
+                key={index}
+                className="bg-[#181818] rounded-xl p-5 min-w-[280px] md:min-w-[330px] flex flex-col gap-3 hover:scale-[1.02] hover:bg-[#1f1f1f] transition-all duration-300"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={r.avatar}
+                      alt={r.name}
+                      className="w-9 h-9 rounded-full"
+                    />
+                    <div>
+                      <h4 className="font-semibold text-base">{r.name}</h4>
+                      <p className="text-gray-400 text-xs">{r.date}</p>
+                    </div>
+                  </div>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                    alt="Google"
+                    className="w-4 h-4"
+                  />
+                </div>
+
+                <div className="flex">
+                  {[...Array(r.rating)].map((_, i) => (
+                    <Star key={i} fill="#FFC107" stroke="#FFC107" size={16} />
+                  ))}
+                </div>
+
+                <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
+                  {r.review}
+                </p>
+                <a
+                  href="#"
+                  className="text-green-400 text-xs mt-1 hover:underline hover:text-green-300"
+                >
+                  Read more
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 bg-[#1e1e1e] hover:bg-[#2a2a2a] rounded-full p-2 transition duration-300"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <button
+            onClick={() => scroll("right")}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 bg-[#1e1e1e] hover:bg-[#2a2a2a] rounded-full p-2 transition duration-300"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
     </section>
   );
