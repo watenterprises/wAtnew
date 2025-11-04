@@ -6,46 +6,131 @@ gsap.registerPlugin(ScrollTrigger);
 
 const reviews = [
   {
-    name: "Gaurav Kumar",
-    date: "September 2025",
+    name: "Mathrushree Architect",
+    date: "October 2025",
     rating: 5,
     review:
-      "Our experience with wAt was excellent. Their marketing strategies brought significant visibility and customer traction, reinforcing why we chose them.",
-    avatar: "https://ui-avatars.com/api/?name=Gaurav+Kumar&background=19a1ff&color=fff",
+      "WAT created our brand identity from scratch — logo, website, and digital marketing strategy. Their consulting helped us successfully run ads and grow our online presence.",
+    avatar: "https://ui-avatars.com/api/?name=Mathrushree+Architect&background=19a1ff&color=fff",
   },
   {
-    name: "Shuvam Mohanty",
-    date: "September 2025",
+    name: "Kumar Building Solutions",
+    date: "October 2025",
     rating: 5,
     review:
-      "wAt took charge of our product launch with a well-rounded marketing plan that included influencer partnerships, content strategy, and digital campaigns.",
-    avatar: "https://ui-avatars.com/api/?name=Shuvam+Mohanty&background=19a1ff&color=fff",
+      "They built our website and online product catalogue with integrated e-forms. WAT handled digital marketing, design, and created a strong online store presence for us.",
+    avatar: "https://ui-avatars.com/api/?name=Kumar+Building+Solutions&background=19a1ff&color=fff",
   },
   {
-    name: "Saikiran",
+    name: "Vibewoods",
     date: "September 2025",
     rating: 5,
     review:
-      "We trusted wAt to handle all our social media accounts, and they delivered stellar results. Their mix of organic posts and paid ads boosted our reach impressively.",
-    avatar: "https://ui-avatars.com/api/?name=Saikiran&background=19a1ff&color=fff",
+      "We worked with WAT for a full rebrand — they redesigned our logo, built our brand kit, handled digital marketing, product design, videography, and content creation. Excellent work!",
+    avatar: "https://ui-avatars.com/api/?name=Vibewoods&background=19a1ff&color=fff",
+  },
+  {
+    name: "JH Group",
+    date: "September 2025",
+    rating: 5,
+    review:
+      "WAT created our website and detailed project catalogue. They built our digital presence and helped clients easily explore our construction and design services online.",
+    avatar: "https://ui-avatars.com/api/?name=JH+Group&background=19a1ff&color=fff",
+  },
+  {
+    name: "Janani Fitness Centre",
+    date: "August 2025",
+    rating: 5,
+    review:
+      "We collaborated with WAT to create admission and billing software, invoicing tools, and a website. They also guided us on digital marketing and management strategies.",
+    avatar: "https://ui-avatars.com/api/?name=Janani+Fitness+Centre&background=19a1ff&color=fff",
+  },
+  {
+    name: "A5 Motors",
+    date: "August 2025",
+    rating: 5,
+    review:
+      "WAT designed our database and billing software, built our website, and advised us on digital marketing. Their expertise streamlined our operations and boosted reach.",
+    avatar: "https://ui-avatars.com/api/?name=A5+Motors&background=19a1ff&color=fff",
+  },
+  {
+    name: "NV Fit Hub",
+    date: "July 2025",
+    rating: 5,
+    review:
+      "Our website by WAT helped people enquire, learn about our services, and join online. They also supported our event promotions and overall digital presence.",
+    avatar: "https://ui-avatars.com/api/?name=NV+Fit+Hub&background=19a1ff&color=fff",
+  },
+  {
+    name: "B4tutorial",
+    date: "June 2025",
+    rating: 5,
+    review:
+      "WAT developed our website and helped us build an online presence that attracts more students. Their marketing insights improved our visibility and credibility.",
+    avatar: "https://ui-avatars.com/api/?name=B4tutorial&background=19a1ff&color=fff",
+  },
+  {
+    name: "Beats School of Dance and Art",
+    date: "June 2025",
+    rating: 5,
+    review:
+      "WAT redesigned our logo, handled video editing, and created stunning graphics that perfectly represent our dance and art culture.",
+    avatar: "https://ui-avatars.com/api/?name=Beats+School+of+Dance+and+Art&background=19a1ff&color=fff",
+  },
+  {
+    name: "KDM Constructions",
+    date: "May 2025",
+    rating: 5,
+    review:
+      "We collaborated with WAT for rebranding, a new website, logo design, and digital marketing. Their content creation gave us a strong identity online.",
+    avatar: "https://ui-avatars.com/api/?name=KDM+Constructions&background=19a1ff&color=fff",
+  },
+  {
+    name: "Monocraft",
+    date: "April 2025",
+    rating: 5,
+    review:
+      "WAT designed our logo, website, and handled digital marketing with a strong focus on creative branding and consultation. Their designs stand out.",
+    avatar: "https://ui-avatars.com/api/?name=Monocraft&background=19a1ff&color=fff",
+  },
+  {
+    name: "Blahk",
+    date: "March 2025",
+    rating: 5,
+    review:
+      "From digital marketing to website creation, photography, and content planning — WAT managed everything seamlessly and professionally.",
+    avatar: "https://ui-avatars.com/api/?name=Blahk&background=19a1ff&color=fff",
+  },
+  {
+    name: "Impirials",
+    date: "March 2025",
+    rating: 5,
+    review:
+      "WAT designed our website and handled our digital marketing campaigns effectively. Great results and quick support throughout the process.",
+    avatar: "https://ui-avatars.com/api/?name=Impirials&background=19a1ff&color=fff",
   },
 ];
 
 const StarIcon = ({ filled }) => (
   <svg width="18" height="18" fill={filled ? "#FFC107" : "none"} viewBox="0 0 24 24">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill={filled ? "#FFC107" : "none"} stroke="#FFC107" strokeWidth="1.5"/>
+    <path
+      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+      fill={filled ? "#FFC107" : "none"}
+      stroke="#FFC107"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
 const ChevronLeft = () => (
   <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-    <path d="M15 18l-6-6 6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M15 18l-6-6 6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const ChevronRight = () => (
   <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-    <path d="M9 18l6-6-6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9 18l6-6-6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -66,7 +151,7 @@ export default function TestimonialSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
-          once: true
+          once: true,
         },
       }
     );
@@ -80,8 +165,6 @@ export default function TestimonialSection() {
     }
   };
 
-  const reviewLink = "https://g.page/r/YOUR_GOOGLE_REVIEW_LINK";
-
   return (
     <section
       ref={sectionRef}
@@ -89,111 +172,33 @@ export default function TestimonialSection() {
         background: "#000",
         width: "100vw",
         padding: "70px 24px 80px",
-        margin: 0,
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
-      <div style={{
-        maxWidth: 1180,
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "row",
-        gap: 48,
-        alignItems: "flex-start",
-        position: "relative"
-      }}>
-        {/* Left Section - Brand Card */}
-        <div className="fade-up" style={{
-          background: "linear-gradient(125deg, rgba(38,38,42,0.28) 54%, rgba(18,18,22,0.42) 100%)",
-          borderRadius: "1.8rem",
-          padding: "38px 32px",
-          border: "1.6px solid rgba(255,255,255,0.06)",
-          boxShadow: "0 8px 44px rgba(0,0,0,0.24), 0 0.5px 10px 0 rgba(100,100,100,0.08) inset",
-          backdropFilter: "blur(16px) saturate(110%)",
-          WebkitBackdropFilter: "blur(16px) saturate(110%)",
-          width: "100%",
-          maxWidth: 320,
-          minWidth: 280,
+      <div
+        style={{
+          maxWidth: 1180,
+          margin: "0 auto",
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start"
-        }}>
-          {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-            <div style={{
-              background: "linear-gradient(135deg, #19a1ff 0%, #1e88e5 100%)",
-              borderRadius: "50%",
-              width: 48,
-              height: 48,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 800,
-              fontSize: "1.5rem",
-              color: "#fff",
-              fontFamily: "Inter, sans-serif"
-            }}>
-              w
-            </div>
-            <h2 style={{
-              fontFamily: "Inter, Segoe UI, Arial, sans-serif",
-              fontSize: "1.5rem",
-              fontWeight: 700,
-              color: "#fff"
-            }}>
-              wAt
-            </h2>
-          </div>
+          gap: 48,
+          alignItems: "center",
+        }}
+      >
+        <h2
+          className="fade-up"
+          style={{
+            fontSize: "2rem",
+            color: "#fff",
+            textAlign: "center",
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 700,
+          }}
+        >
+          Client Reviews
+        </h2>
 
-          {/* Star Rating */}
-          <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 8 }}>
-            {[...Array(5)].map((_, i) => (
-              <StarIcon key={i} filled={i < 4.5} />
-            ))}
-          </div>
-
-          <p style={{
-            color: "#b8b8b8",
-            fontSize: "0.98rem",
-            marginBottom: 24,
-            fontFamily: "Inter, sans-serif"
-          }}>
-            4.8 • 110 Google reviews
-          </p>
-
-          {/* CTA Button */}
-          <a
-            href={reviewLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: "linear-gradient(90deg, #19a1ff 30%, #216dd7 100%)",
-              color: "#fff",
-              fontFamily: "Inter, Segoe UI, Arial, sans-serif",
-              fontSize: "1.04rem",
-              fontWeight: 600,
-              padding: "12px 28px",
-              borderRadius: "14px",
-              textDecoration: "none",
-              display: "inline-block",
-              boxShadow: "0 6px 18px rgba(25,161,255,0.28)",
-              transition: "transform 0.2s, box-shadow 0.2s"
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "translateY(-2px)";
-              e.target.style.boxShadow = "0 8px 24px rgba(25,161,255,0.38)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "translateY(0)";
-              e.target.style.boxShadow = "0 6px 18px rgba(25,161,255,0.28)";
-            }}
-          >
-            Write a review
-          </a>
-        </div>
-
-        {/* Right Section - Reviews Carousel */}
-        <div className="fade-up" style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+        <div className="fade-up" style={{ width: "100%", position: "relative" }}>
           <div
             ref={carouselRef}
             style={{
@@ -202,7 +207,6 @@ export default function TestimonialSection() {
               overflowX: "scroll",
               scrollBehavior: "smooth",
               scrollbarWidth: "none",
-              msOverflowStyle: "none"
             }}
           >
             {reviews.map((r, index) => (
@@ -212,97 +216,49 @@ export default function TestimonialSection() {
                   background: "linear-gradient(125deg, rgba(38,38,42,0.24) 54%, rgba(18,18,22,0.38) 100%)",
                   borderRadius: "1.6rem",
                   padding: "28px 26px",
-                  minWidth: 340,
-                  maxWidth: 340,
+                  minWidth: 300,
                   border: "1.5px solid rgba(255,255,255,0.06)",
-                  boxShadow: "0 6px 36px rgba(0,0,0,0.20), 0 0.5px 8px 0 rgba(100,100,100,0.08) inset",
-                  backdropFilter: "blur(14px) saturate(110%)",
-                  WebkitBackdropFilter: "blur(14px) saturate(110%)",
+                  boxShadow: "0 6px 36px rgba(0,0,0,0.20)",
+                  backdropFilter: "blur(14px)",
                   display: "flex",
                   flexDirection: "column",
                   gap: 16,
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                  cursor: "default"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 10px 48px rgba(0,0,0,0.28), 0 0.5px 8px 0 rgba(100,100,100,0.08) inset";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 6px 36px rgba(0,0,0,0.20), 0 0.5px 8px 0 rgba(100,100,100,0.08) inset";
                 }}
               >
-                {/* Header */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <img
-                      src={r.avatar}
-                      alt={r.name}
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: "50%",
-                        border: "2px solid rgba(255,255,255,0.12)"
-                      }}
-                    />
-                    <div>
-                      <h4 style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "1.08rem",
-                        fontWeight: 600,
-                        color: "#f2f2f2",
-                        marginBottom: 2
-                      }}>
-                        {r.name}
-                      </h4>
-                      <p style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "0.88rem",
-                        color: "#999"
-                      }}>
-                        {r.date}
-                      </p>
-                    </div>
-                  </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                    alt="Google"
-                    style={{ width: 20, height: 20, opacity: 0.7 }}
+                    src={r.avatar}
+                    alt={r.name}
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: "50%",
+                      border: "2px solid rgba(255,255,255,0.12)",
+                    }}
                   />
+                  <div>
+                    <h4 style={{ color: "#f2f2f2", fontSize: "1.1rem", fontWeight: 600 }}>{r.name}</h4>
+                    <p style={{ color: "#999", fontSize: "0.88rem" }}>{r.date}</p>
+                  </div>
                 </div>
 
-                {/* Stars */}
                 <div style={{ display: "flex", gap: 3 }}>
                   {[...Array(r.rating)].map((_, i) => (
                     <StarIcon key={i} filled={true} />
                   ))}
                 </div>
 
-                {/* Review Text */}
-                <p style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "1.02rem",
-                  color: "#d0d0d0",
-                  lineHeight: 1.65,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 4,
-                  WebkitBoxOrient: "vertical"
-                }}>
-                  {r.review}
-                </p>
+                <p style={{ color: "#d0d0d0", lineHeight: 1.65, fontSize: "1rem" }}>{r.review}</p>
               </div>
             ))}
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Buttons (No effects) */}
           <button
             onClick={() => scroll("left")}
             style={{
               position: "absolute",
-              left: -16,
+              left: 0,
               top: "50%",
               transform: "translateY(-50%)",
               background: "rgba(25,161,255,0.12)",
@@ -314,17 +270,6 @@ export default function TestimonialSection() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              transition: "all 0.2s",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)"
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = "rgba(25,161,255,0.2)";
-              e.target.style.transform = "translateY(-50%) scale(1.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "rgba(25,161,255,0.12)";
-              e.target.style.transform = "translateY(-50%) scale(1)";
             }}
           >
             <ChevronLeft />
@@ -334,7 +279,7 @@ export default function TestimonialSection() {
             onClick={() => scroll("right")}
             style={{
               position: "absolute",
-              right: -16,
+              right: 0,
               top: "50%",
               transform: "translateY(-50%)",
               background: "rgba(25,161,255,0.12)",
@@ -346,17 +291,6 @@ export default function TestimonialSection() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              transition: "all 0.2s",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)"
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = "rgba(25,161,255,0.2)";
-              e.target.style.transform = "translateY(-50%) scale(1.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "rgba(25,161,255,0.12)";
-              e.target.style.transform = "translateY(-50%) scale(1)";
             }}
           >
             <ChevronRight />
