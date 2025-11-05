@@ -93,23 +93,32 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 px-8 py-6">
-            <div className="flex flex-col gap-4">
-              {menuItems.map((item) => (
-                <Link key={item.name} to={item.path} className="text-white/90 hover:text-white py-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  {item.name}
-                </Link>
-              ))}
-              <button
-                className="text-white font-semibold px-6 py-3 rounded-xl mt-4 w-full"
-                style={{ background: "#0072b0" }}
-              >
-                Contact us
-              </button>
-            </div>
-          </div>
-        )}
+{isMobileMenuOpen && (
+  <div className="md:hidden border-t border-white/10 px-8 py-6">
+    <div className="flex flex-col gap-4">
+      {menuItems.map((item) => (
+        <Link
+          key={item.name}
+          to={item.path}
+          className="text-white/90 hover:text-white py-2"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          {item.name}
+        </Link>
+      ))}
+
+      {/* ✅ Fixed Contact Button for Mobile */}
+      <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+        <button
+          className="text-white font-semibold px-6 py-3 rounded-xl mt-4 w-full hover:scale-105 transition-all duration-200"
+          style={{ background: "#0072b0", fontFamily: "Inter, sans-serif" }}
+        >
+          Contact us
+        </button>
+      </Link>
+    </div>
+  </div>
+)}
       </nav>
     </div>
   );

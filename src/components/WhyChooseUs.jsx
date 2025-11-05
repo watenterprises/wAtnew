@@ -72,13 +72,14 @@ export default function WhyChooseUs() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Animate heading letters
+    // Animate heading letters (fixed spaces issue)
     if (titleRef.current) {
       const splitText = titleRef.current.textContent.split("");
       titleRef.current.textContent = "";
       splitText.forEach((char) => {
         const span = document.createElement("span");
-        span.textContent = char;
+        // Preserve spaces correctly
+        span.textContent = char === " " ? "\u00A0" : char;
         span.style.display = "inline-block";
         span.style.opacity = "0";
         span.style.transform = "translateY(20px)";
@@ -154,12 +155,14 @@ export default function WhyChooseUs() {
         }}
       >
         {/* Heading */}
-        <div style={{
-          textAlign: "center",
-          marginTop: 40,
-          marginBottom: 32,
-          padding: "0 8px"
-        }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: 40,
+            marginBottom: 32,
+            padding: "0 8px"
+          }}
+        >
           <h2
             ref={titleRef}
             style={{
@@ -218,12 +221,12 @@ export default function WhyChooseUs() {
                   alignItems: "center"
                 }}
                 className="feature-card"
-                ref={el => {
+                ref={(el) => {
                   cardsRef.current[idx] = el;
                 }}
               >
                 <div
-                  ref={el => {
+                  ref={(el) => {
                     circleRefs.current[idx] = el;
                   }}
                   style={{
