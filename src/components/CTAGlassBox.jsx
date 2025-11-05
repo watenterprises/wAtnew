@@ -80,7 +80,7 @@ export default function CTAGlassBox() {
               boxShadow: "0 0 0 2.5px rgba(110,255,185,0.16)",
             }}
           />
-          <span>Spots open for September projects</span>
+          <span> Only few spots open for projects</span>
         </div>
 
         {/* Heading */}

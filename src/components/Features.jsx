@@ -268,7 +268,7 @@ const Features = () => {
                   marginBottom: '16px'
                 }}
               >
-                Rapid turnaround
+                Effortless workflow
               </h3>
               <p 
                 style={{ 
@@ -280,7 +280,7 @@ const Features = () => {
                   marginBottom: '40px'
                 }}
               >
-                Most requests are handled in 48 hours or less — quick, seamless, and stress-free.
+                Simplify your process with organized requests, quick approvals, and clear progress tracking.
               </p>
             </div>
             
@@ -423,7 +423,7 @@ const Features = () => {
                   marginBottom: '16px'
                 }}
               >
-                Unlimited requests
+                Dedicated support
               </h3>
               <p 
                 style={{ 
@@ -435,7 +435,7 @@ const Features = () => {
                   marginBottom: '40px'
                 }}
               >
-                Submit as many design requests as you need, one at a time.
+                Get personalized assistance anytime — we’re here to make your vision a reality.
               </p>
             </div>
             
@@ -550,7 +550,7 @@ const Features = () => {
               style={{ 
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                 color: '#9d9d9d',
-                fontSize: '1.125rem',
+                fontSize: '1rem',
                 fontWeight: '400',
                 lineHeight: '1.6'
               }}
