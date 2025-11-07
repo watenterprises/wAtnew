@@ -11,6 +11,9 @@ import ProjectDetail from "./pages/ProjectDetail";
 import ContactPage from "./pages/ContactPage";
 import ServicesPage from "./components/ServicesPage";
 import AboutUsPage from "./components/AboutUsPage";
+import AdminLogin from "./admin/AdminLogin";
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminProjects from "./admin/AdminProjects";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -45,6 +48,9 @@ function App() {
             <Route path="/projects/:projectId" element={<ProjectDetail />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/projects" element={<AdminProjects />} />
           </Routes>
         </div>
       )}
