@@ -35,6 +35,7 @@ export default function AdminNavbar() {
         <Link to="/admin/projects" className="hover:underline">
           Projects
         </Link>
+        <Link to="/admin/trash" className="hover:underline">🗑️ Trash</Link>
         <button onClick={handleLogout} className="bg-red-600 px-3 py-1 rounded">
           Logout
         </button>

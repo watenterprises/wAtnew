@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,16 +37,19 @@ export default function CaseStudies() {
   const cardRefs = useRef([]);
   const sectionRef = useRef(null);
 
-  // ✅ Fetch data from Firestore
+  // ✅ Fetch Firestore projects (ordered + filter deleted)
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "projects"));
-        const projectData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setProjects(projectData);
+        const q = query(collection(db, "projects"), orderBy("order", "asc"));
+        const snapshot = await getDocs(q);
+
+        const data = snapshot.docs
+          .map((doc) => ({ id: doc.id, ...doc.data() }))
+          .filter((p) => !p.deleted); // only exclude those explicitly marked deleted
+
+        console.log("✅ Loaded Projects:", data);
+        setProjects(data);
       } catch (err) {
         console.error("❌ Error fetching Firestore projects:", err);
       } finally {
@@ -116,7 +119,7 @@ export default function CaseStudies() {
       >
         <h1
           style={{
-            fontFamily: "Inter, Segoe UI, Arial, sans-serif",
+            fontFamily: "Inter, sans-serif",
             fontWeight: 500,
             fontSize: "clamp(2.2rem, 6vw, 4.4rem)",
             letterSpacing: "-0.025em",
@@ -133,7 +136,7 @@ export default function CaseStudies() {
             fontSize: "clamp(1rem, 2vw, 1.18rem)",
             lineHeight: 1.48,
             marginBottom: "clamp(24px, 4vw, 40px)",
-            fontFamily: "Inter, Segoe UI, Arial, sans-serif",
+            fontFamily: "Inter, sans-serif",
             padding: "0 10px",
           }}
         >
@@ -191,7 +194,6 @@ export default function CaseStudies() {
                 display: "block",
                 textDecoration: "none",
                 flexShrink: 0,
-                transition: "box-shadow 0.17s",
               }}
               onMouseEnter={() => {
                 if (hoverRefs.current[idx]) {
@@ -216,12 +218,13 @@ export default function CaseStudies() {
                   filter: "brightness(0.93)",
                   borderTopLeftRadius: "clamp(1.2rem, 3vw, 2.1rem)",
                   borderBottomLeftRadius:
-                    window.innerWidth <= 768 ? "0" : "clamp(1.2rem, 3vw, 2.1rem)",
+                    window.innerWidth <= 768
+                      ? "0"
+                      : "clamp(1.2rem, 3vw, 2.1rem)",
                   borderTopRightRadius:
                     window.innerWidth <= 768
                       ? "clamp(1.2rem, 3vw, 2.1rem)"
                       : "0",
-                  transition: "filter 0.15s",
                 }}
                 loading="lazy"
               />
@@ -286,31 +289,29 @@ export default function CaseStudies() {
                   flexWrap: "wrap",
                 }}
               >
-                {proj.tags &&
-                  proj.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      style={{
-                        background: "rgba(255,255,255,0.07)",
-                        borderRadius: "44px",
-                        fontSize: "clamp(0.88rem, 1.8vw, 1.01rem)",
-                        color: "#dadada",
-                        fontWeight: 500,
-                        padding:
-                          "clamp(5px, 1vw, 7px) clamp(14px, 3vw, 23px)",
-                        border: "1.17px solid rgba(255,255,255,0.10)",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {proj.tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      background: "rgba(255,255,255,0.07)",
+                      borderRadius: "44px",
+                      fontSize: "clamp(0.88rem, 1.8vw, 1.01rem)",
+                      color: "#dadada",
+                      fontWeight: 500,
+                      padding:
+                        "clamp(5px, 1vw, 7px) clamp(14px, 3vw, 23px)",
+                      border: "1.17px solid rgba(255,255,255,0.10)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Responsive fix */}
       <style jsx>{`
         @media (max-width: 768px) {
           .case-study-card {

@@ -14,6 +14,7 @@ import AboutUsPage from "./components/AboutUsPage";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminProjects from "./admin/AdminProjects";
+import TrashBox from "./admin/TrashBox";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/projects" element={<AdminProjects />} />
+        <Route path="/admin/trash" element={<TrashBox />} />
           </Routes>
         </div>
       )}
