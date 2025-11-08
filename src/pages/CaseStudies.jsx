@@ -127,7 +127,7 @@ export default function CaseStudies() {
             marginBottom: "clamp(8px, 1.5vw, 12px)",
           }}
         >
-          Case Studies
+          Projects
         </h1>
         <div
           style={{

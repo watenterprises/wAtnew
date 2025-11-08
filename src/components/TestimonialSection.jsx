@@ -75,7 +75,8 @@ const reviews = [
     rating: 5,
     review:
       "WAT redesigned our logo, handled video editing, and created stunning graphics that perfectly represent our dance and art culture.",
-    avatar: "https://ui-avatars.com/api/?name=Beats+School+of+Dance+and+Art&background=19a1ff&color=fff",
+    avatar:
+      "https://ui-avatars.com/api/?name=Beats+School+of+Dance+and+Art&background=19a1ff&color=fff",
   },
   {
     name: "KDM Constructions",
@@ -198,6 +199,36 @@ export default function TestimonialSection() {
           Client Reviews
         </h2>
 
+        {/* Google-style Write a Review Button */}
+        <a
+          href="https://www.google.com/search?sca_esv=448ad7832978426a&rlz=1C1ONGR_enIN1016IN1016&sxsrf=AE3TifNouAaniwzhZ6gCrrVsgBVjHPM5FA:1762579568137&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E5IOa8w20KW1fIZ1kvTPBGq2JNJZoJJE2uAjsTFJVJLB_UsdF5QJuVsBvFyBHthPfc7W2ae53HcQ1oiLDcfR8BXN9BSmG9g9agNJQPcaRTSK-zh4ErFiqMnZYR4QyvFfi7xbDfEK_JYcdazMY0sCkmD4bzr8uObjh_HHW5ZDwj_etAJSOg%3D%3D&q=wAt+Enterprises+%E2%80%93+A+Global+Web,+App+%26+Digital+Solutions+Company+Reviews&sa=X&ved=2ahUKEwj_gbDI6OGQAxUbSGwGHV9UGXgQ0bkNegQILRAE&biw=1536&bih=826&dpr=1.25#"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fade-up"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            background: "linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335)",
+            color: "#fff",
+            fontSize: "1rem",
+            fontWeight: 600,
+            padding: "12px 22px",
+            borderRadius: "10px",
+            textDecoration: "none",
+            transition: "transform 0.3s ease, opacity 0.3s ease",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1.0)")}
+        >
+          <img
+            src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
+            alt="Google"
+            style={{ width: 20, height: 20, borderRadius: "4px" }}
+          />
+          Write a Review
+        </a>
+
         <div className="fade-up" style={{ width: "100%", position: "relative" }}>
           <div
             ref={carouselRef}
@@ -213,7 +244,8 @@ export default function TestimonialSection() {
               <div
                 key={index}
                 style={{
-                  background: "linear-gradient(125deg, rgba(38,38,42,0.24) 54%, rgba(18,18,22,0.38) 100%)",
+                  background:
+                    "linear-gradient(125deg, rgba(38,38,42,0.24) 54%, rgba(18,18,22,0.38) 100%)",
                   borderRadius: "1.6rem",
                   padding: "28px 26px",
                   minWidth: 300,
@@ -253,7 +285,7 @@ export default function TestimonialSection() {
             ))}
           </div>
 
-          {/* Buttons (No effects) */}
+          {/* Navigation Buttons */}
           <button
             onClick={() => scroll("left")}
             style={{

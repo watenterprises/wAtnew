@@ -55,7 +55,7 @@ export default function WebsiteFooter() {
               opacity: 0.92,
             }}
           >
-            &copy; {new Date().getFullYear()}. Your design partner
+            &copy; {new Date().getFullYear()}. Your Growth partner
           </span>
         </div>
 

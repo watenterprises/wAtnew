@@ -87,8 +87,9 @@ const Features = () => {
               marginBottom: '24px'
             }}
           >
-            <span className="text-white">Your scalable,</span><br />
-            <span style={{ color: '#7d7d7d' }}>dedicated design team</span>
+            <span className="text-white">Your vision,</span><br />
+<span style={{ color: '#7d7d7d' }}>crafted with creativity</span>
+
           </h2>
           
           <p 
